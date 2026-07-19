@@ -1,0 +1,51 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Submission {
+  id        String   @id @default(uuid())
+  name      String
+  email     String
+  strategy  String
+  createdAt DateTime @default(now())
+}
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String?   @unique
+  password      String?
+  plan          String    @default("FREE") // FREE, BASIC, PREMIUM
+  createdAt     DateTime  @default(now())
+  strategies    Strategy[]
+}
+
+model Strategy {
+  id            String    @id @default(cuid())
+  userId        String
+  user          User      @relation(fields: [userId], references: [id])
+  prompt        String
+  status        String    @default("PENDING") // PENDING, BACKTESTING, COMPLETED, FAILED
+  sourceCode    String?
+  platform      String    @default("MT5")
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  results       BacktestResult?
+}
+
+model BacktestResult {
+  id            String    @id @default(cuid())
+  strategyId    String    @unique
+  strategy      Strategy  @relation(fields: [strategyId], references: [id], onDelete: Cascade)
+  winRate       Float?
+  profitFactor  Float?
+  maxDrawdown   Float?
+  totalTrades   Int?
+  equityCurve   String?   // JSON string of equity data points
+  createdAt     DateTime  @default(now())
+}
