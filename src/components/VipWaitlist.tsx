@@ -60,11 +60,11 @@ export default function VipWaitlist() {
         </div>
 
         <div>
-          <label className="block text-sm font-semibold text-zinc-900 mb-2">What is your current active trading capital?</label>
+          <label className="block text-sm font-semibold text-zinc-900 mb-2">What is your current active trading capital? <span className="text-red-500">*</span></label>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
             {["Under $500", "$500 - $2,000", "$2,000+"].map(opt => (
               <label key={opt} className={`cursor-pointer p-4 border rounded-xl text-center text-sm font-medium transition-colors ${formData.capital === opt ? 'border-primary bg-primary/5 text-primary' : 'border-zinc-200 text-zinc-600 hover:border-zinc-300'}`}>
-                <input type="radio" name="capital" value={opt} className="hidden" onChange={(e) => setFormData({...formData, capital: e.target.value})} />
+                <input required type="radio" name="capital" value={opt} className="hidden" onChange={(e) => setFormData({...formData, capital: e.target.value})} />
                 {opt}
               </label>
             ))}
@@ -72,11 +72,11 @@ export default function VipWaitlist() {
         </div>
 
         <div>
-          <label className="block text-sm font-semibold text-zinc-900 mb-2">Are you currently trading a Prop Firm account?</label>
+          <label className="block text-sm font-semibold text-zinc-900 mb-2">Are you currently trading a Prop Firm account? <span className="text-red-500">*</span></label>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
             {["Yes", "No", "Planning to"].map(opt => (
               <label key={opt} className={`cursor-pointer p-4 border rounded-xl text-center text-sm font-medium transition-colors ${formData.propFirm === opt ? 'border-primary bg-primary/5 text-primary' : 'border-zinc-200 text-zinc-600 hover:border-zinc-300'}`}>
-                <input type="radio" name="propFirm" value={opt} className="hidden" onChange={(e) => setFormData({...formData, propFirm: e.target.value})} />
+                <input required type="radio" name="propFirm" value={opt} className="hidden" onChange={(e) => setFormData({...formData, propFirm: e.target.value})} />
                 {opt}
               </label>
             ))}
@@ -84,11 +84,11 @@ export default function VipWaitlist() {
         </div>
 
         <div>
-          <label className="block text-sm font-semibold text-zinc-900 mb-2">What is your biggest struggle?</label>
+          <label className="block text-sm font-semibold text-zinc-900 mb-2">What is your biggest struggle? <span className="text-red-500">*</span></label>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
             {["Emotions", "Risk Management", "Lack of Time"].map(opt => (
               <label key={opt} className={`cursor-pointer p-4 border rounded-xl text-center text-sm font-medium transition-colors ${formData.struggle === opt ? 'border-primary bg-primary/5 text-primary' : 'border-zinc-200 text-zinc-600 hover:border-zinc-300'}`}>
-                <input type="radio" name="struggle" value={opt} className="hidden" onChange={(e) => setFormData({...formData, struggle: e.target.value})} />
+                <input required type="radio" name="struggle" value={opt} className="hidden" onChange={(e) => setFormData({...formData, struggle: e.target.value})} />
                 {opt}
               </label>
             ))}
