@@ -1,3 +1,4 @@
 ritishlabs.com {
+    tls internal
     reverse_proxy web:3000
 }
