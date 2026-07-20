@@ -76,7 +76,7 @@ export default function Home() {
           <h2 className="heading text-3xl font-bold text-zinc-900 mb-4">Deep Market Insights & Manual Execution</h2>
           <p className="text-zinc-500 mb-8 text-lg">Every algorithm starts with a deep understanding of market mechanics. I share my personal, manual trade breakdowns, market structure analysis, and daily insights on X.</p>
           <a 
-            href="https://x.com/" 
+            href="https://x.com/Billionaire7070" 
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center px-8 py-4 text-sm font-bold text-white bg-zinc-900 rounded-full hover:bg-zinc-800 transition-colors shadow-lg"

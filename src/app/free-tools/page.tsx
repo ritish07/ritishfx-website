@@ -17,7 +17,7 @@ export default function FreeToolsPage() {
             <span className="text-zinc-400">100% Free.</span>
           </h1>
           <p className="text-lg text-zinc-500 font-medium max-w-2xl mx-auto">
-            These are the exact tools I use for my manual market analysis. Add them to your TradingView for free and start seeing the markets clearly.
+            These are the exact tools I use for my manual market analysis. Join thousands of traders already using these tools to see the markets clearly. Add them to your TradingView for free.
           </p>
         </div>
       </section>
@@ -85,15 +85,19 @@ export default function FreeToolsPage() {
               </li>
             </ul>
             <div className="pt-4 flex flex-col sm:flex-row gap-4">
-              <a href="#" target="_blank" rel="noopener noreferrer" className="px-6 py-3 bg-zinc-900 text-white font-bold rounded-xl hover:bg-zinc-800 transition shadow-lg text-center">
+              <a href="https://www.tradingview.com/script/TsbZREVm-Liquidity-Sweep-and-BOS-RitishFX/" target="_blank" rel="noopener noreferrer" className="px-6 py-3 bg-zinc-900 text-white font-bold rounded-xl hover:bg-zinc-800 transition shadow-lg text-center">
                 Add to TradingView
               </a>
             </div>
           </div>
-          <div className="flex-1 w-full bg-zinc-100 rounded-3xl overflow-hidden shadow-xl aspect-video flex flex-col items-center justify-center text-zinc-400 border border-zinc-200">
-            <div className="text-5xl mb-4">🎥</div>
-            <p className="font-medium text-zinc-500">Video Link Missing</p>
-            <p className="text-sm">Please provide YouTube link</p>
+          <div className="flex-1 w-full bg-zinc-200 rounded-3xl overflow-hidden shadow-2xl aspect-video relative">
+            <iframe 
+              className="absolute inset-0 w-full h-full" 
+              src="https://www.youtube.com/embed/iE8--8cn2kk" 
+              title="Liquidity Sweep Tutorial" 
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+              allowFullScreen
+            ></iframe>
           </div>
         </div>
 
@@ -116,7 +120,7 @@ export default function FreeToolsPage() {
               </li>
             </ul>
             <div className="pt-4 flex flex-col sm:flex-row gap-4">
-              <a href="#" target="_blank" rel="noopener noreferrer" className="px-6 py-3 bg-zinc-900 text-white font-bold rounded-xl hover:bg-zinc-800 transition shadow-lg text-center">
+              <a href="https://www.tradingview.com/script/qcZ8YqFv-Dynamic-Trendline-Breakout-RFX/" target="_blank" rel="noopener noreferrer" className="px-6 py-3 bg-zinc-900 text-white font-bold rounded-xl hover:bg-zinc-800 transition shadow-lg text-center">
                 Add to TradingView
               </a>
             </div>
