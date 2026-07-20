@@ -1,6 +1,5 @@
 import SmoothScroller from "@/components/SmoothScroller";
 import FloatingHeader from "@/components/FloatingHeader";
-import VipWaitlist from "@/components/VipWaitlist";
 import InteractiveDots from "@/components/InteractiveDots";
 import { ArrowDown } from "lucide-react";
 import Link from "next/link";
@@ -33,9 +32,6 @@ export default function Home() {
         </div>
       </section>
 
-
-      {/* Global Waitlist Modal */}
-      <VipWaitlist />
 
       {/* Founder's Edge Section */}
       <section className="py-32 px-4 bg-white border-t border-zinc-100 text-center flex flex-col items-center justify-center">

@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { openWaitlist } from "./VipWaitlist";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 
@@ -29,12 +28,12 @@ export default function FloatingHeader() {
           >
             Book a Call
           </Link>
-          <button 
-            onClick={openWaitlist}
+          <Link 
+            href="/waitlist"
             className="px-5 py-2 text-sm font-bold text-white bg-zinc-900 rounded-full hover:bg-zinc-800 transition-colors shadow-sm cursor-pointer"
           >
             Momentum Pro Waitlist
-          </button>
+          </Link>
           <a
             href="https://discord.gg/P6Wp8YqpFJ"
             target="_blank"
@@ -87,15 +86,13 @@ export default function FloatingHeader() {
             Book a Call
           </Link>
           <div className="h-px w-full bg-zinc-100 my-2"></div>
-          <button 
-            onClick={() => {
-              setIsMobileMenuOpen(false);
-              openWaitlist();
-            }}
-            className="w-full mt-2 px-4 py-4 text-base font-bold text-white bg-zinc-900 rounded-xl hover:bg-zinc-800 transition-colors shadow-sm cursor-pointer"
+          <Link 
+            href="/waitlist"
+            onClick={() => setIsMobileMenuOpen(false)}
+            className="w-full mt-2 px-4 py-4 text-base font-bold text-white bg-zinc-900 rounded-xl hover:bg-zinc-800 transition-colors shadow-sm text-center block"
           >
             Momentum Pro Waitlist
-          </button>
+          </Link>
           
           <div className="flex items-center gap-6 mt-6 px-4 pb-2">
             <a

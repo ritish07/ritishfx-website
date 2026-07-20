@@ -66,6 +66,7 @@ export default async function AdminWaitlistPage() {
                 <th className="px-6 py-4">Country</th>
                 <th className="px-6 py-4">Capital</th>
                 <th className="px-6 py-4">Prop Firm</th>
+                <th className="px-6 py-4">Hesitation</th>
                 <th className="px-6 py-4">Early Bird Code</th>
                 <th className="px-6 py-4">Date</th>
               </tr>
@@ -82,6 +83,7 @@ export default async function AdminWaitlistPage() {
                   <td className="px-6 py-4 text-zinc-600">{sub.country}</td>
                   <td className="px-6 py-4 text-zinc-600">{sub.capital}</td>
                   <td className="px-6 py-4 text-zinc-600">{sub.propFirm}</td>
+                  <td className="px-6 py-4 text-zinc-600 max-w-xs truncate" title={sub.hesitation}>{sub.hesitation}</td>
                   <td className="px-6 py-4"><span className="px-2.5 py-1 bg-green-100 text-green-700 rounded-md font-mono text-xs font-bold">{sub.earlyBirdCode}</span></td>
                   <td className="px-6 py-4 text-zinc-500">{new Date(sub.createdAt).toLocaleDateString()}</td>
                 </tr>

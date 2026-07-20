@@ -61,6 +61,7 @@ model Waitlist {
   capital       String
   propFirm      String
   struggle      String
+  hesitation    String
   earlyBirdCode String   @unique @default(cuid())
   status        String   @default("PENDING") // PENDING, NOTIFIED, CLAIMED
   createdAt     DateTime @default(now())
