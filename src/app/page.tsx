@@ -33,34 +33,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Booking Section */}
-      <section id="consultation" className="min-h-screen flex flex-col items-center justify-center relative px-4 bg-zinc-50/50 border-t border-zinc-100">
-        <div className="w-full max-w-5xl mx-auto">
-          <div className="text-center mb-10">
-            <h2 className="heading text-3xl font-bold text-zinc-900 mb-4">Book a 1:1 Consultation</h2>
-            <p className="text-zinc-500">Have a winning strategy? Let's automate it and build your Custom MT5 Bot.</p>
-          </div>
-          
-          <div className="max-w-md mx-auto bg-white border border-zinc-200 rounded-3xl p-8 shadow-xl text-center">
-            <div className="w-16 h-16 bg-blue-50 rounded-2xl flex items-center justify-center mx-auto mb-6 border border-blue-100">
-              <svg className="w-8 h-8 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
-              </svg>
-            </div>
-            <h3 className="text-xl font-bold text-zinc-900 mb-2">1:1 Automation Strategy Call</h3>
-            <p className="text-sm text-zinc-500 mb-6">Secure your slot via Topmate for a private video session.</p>
-            <div className="text-2xl font-bold text-zinc-900 mb-8">₹499</div>
-            <a 
-              href="https://topmate.io/ritishfx" 
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full bg-zinc-900 text-white font-bold py-4 rounded-xl hover:bg-zinc-800 transition-colors flex items-center justify-center"
-            >
-              Book via Topmate
-            </a>
-          </div>
-        </div>
-      </section>
 
       {/* Global Waitlist Modal */}
       <VipWaitlist />

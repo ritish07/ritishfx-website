@@ -146,7 +146,7 @@ export default function FreeToolsPage() {
             Stop trading manually. I build custom algorithms and MT5 bots for traders who want to scale without emotions.
           </p>
           <Link 
-            href="/#consultation" 
+            href="/book-a-call" 
             className="inline-flex items-center px-8 py-4 text-sm font-bold text-zinc-900 bg-white rounded-full hover:bg-zinc-100 transition-colors shadow-lg"
           >
             Book a Custom Bot Consultation

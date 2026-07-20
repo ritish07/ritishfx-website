@@ -6,7 +6,7 @@ export default function HeroActions() {
   return (
     <div className="flex flex-col sm:flex-row items-center gap-4 mt-8">
       <Link 
-        href="#consultation" 
+        href="/book-a-call" 
         className="px-8 py-3.5 text-sm font-bold text-white bg-zinc-900 rounded-full hover:bg-zinc-800 transition-colors shadow-lg"
       >
         Book a Strategy Call
