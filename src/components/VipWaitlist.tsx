@@ -105,9 +105,9 @@ export default function VipWaitlist() {
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-semibold text-zinc-900 mb-1">Phone Number <span className="text-red-500">*</span></label>
-                  <p className="text-xs text-zinc-500 mb-1">Required for exclusive SMS early bird link.</p>
-                  <input required type="tel" onChange={e => setFormData({...formData, phone: e.target.value})} className="w-full p-2.5 border border-zinc-300 rounded-xl focus:ring-2 focus:ring-primary focus:outline-none" placeholder="+1 (555) 000-0000" />
+                  <label className="block text-sm font-semibold text-zinc-900 mb-1">Phone Number <span className="text-zinc-400 font-normal">(Optional)</span></label>
+                  <p className="text-xs text-zinc-500 mb-1">For exclusive SMS early bird link.</p>
+                  <input type="tel" onChange={e => setFormData({...formData, phone: e.target.value})} className="w-full p-2.5 border border-zinc-300 rounded-xl focus:ring-2 focus:ring-primary focus:outline-none" placeholder="+1 (555) 000-0000" />
                 </div>
                 <div>
                   <label className="block text-sm font-semibold text-zinc-900 mb-1">Country <span className="text-red-500">*</span></label>

@@ -8,7 +8,7 @@ export async function POST(req: Request) {
     const data = await req.json();
 
     // Basic validation
-    if (!data.name || !data.email || !data.phone || !data.country || !data.discordId || !data.capital || !data.propFirm || !data.struggle) {
+    if (!data.name || !data.email || !data.country || !data.discordId || !data.capital || !data.propFirm || !data.struggle) {
       return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
     }
 
@@ -26,7 +26,7 @@ export async function POST(req: Request) {
       data: {
         name: data.name,
         email: data.email,
-        phone: data.phone,
+        phone: data.phone || "",
         country: data.country,
         discordId: data.discordId,
         capital: data.capital,
