@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { openWaitlist } from "./VipWaitlist";
 
 export default function FloatingHeader() {
   return (
@@ -16,12 +17,12 @@ export default function FloatingHeader() {
           >
             Book a Call
           </Link>
-          <Link 
-            href="#waitlist" 
-            className="px-5 py-2 text-sm font-bold text-white bg-zinc-900 rounded-full hover:bg-zinc-800 transition-colors shadow-sm"
+          <button 
+            onClick={openWaitlist}
+            className="px-5 py-2 text-sm font-bold text-white bg-zinc-900 rounded-full hover:bg-zinc-800 transition-colors shadow-sm cursor-pointer"
           >
-            EA Waitlist
-          </Link>
+            Momentum Pro Waitlist
+          </button>
           <a
             href="https://discord.gg/P6Wp8YqpFJ"
             target="_blank"

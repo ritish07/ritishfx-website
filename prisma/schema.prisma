@@ -23,6 +23,7 @@ model User {
   plan          String    @default("FREE") // FREE, BASIC, PREMIUM
   createdAt     DateTime  @default(now())
   strategies    Strategy[]
+  licenses      License[]
 }
 
 model Strategy {
@@ -48,4 +49,29 @@ model BacktestResult {
   totalTrades   Int?
   equityCurve   String?   // JSON string of equity data points
   createdAt     DateTime  @default(now())
+}
+
+model Waitlist {
+  id            String   @id @default(uuid())
+  name          String
+  email         String   @unique
+  phone         String
+  country       String
+  discordId     String
+  capital       String
+  propFirm      String
+  struggle      String
+  earlyBirdCode String   @unique @default(cuid())
+  status        String   @default("PENDING") // PENDING, NOTIFIED, CLAIMED
+  createdAt     DateTime @default(now())
+}
+
+model License {
+  id               String   @id @default(cuid())
+  userId           String
+  user             User     @relation(fields: [userId], references: [id])
+  mt5AccountNumber String?  @unique
+  product          String   @default("MOMENTUM_PRO")
+  status           String   @default("ACTIVE") // ACTIVE, REVOKED, EXPIRED
+  createdAt        DateTime @default(now())
 }

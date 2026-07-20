@@ -4,6 +4,7 @@ import VipWaitlist from "@/components/VipWaitlist";
 import InteractiveDots from "@/components/InteractiveDots";
 import { ArrowDown } from "lucide-react";
 import Link from "next/link";
+import HeroActions from "@/components/HeroActions";
 
 export default function Home() {
   return (
@@ -25,20 +26,7 @@ export default function Home() {
           <p className="text-lg text-zinc-500 max-w-2xl font-medium mb-12">
             Professional algorithmic trading development, backtesting, and strategy automation for serious traders.
           </p>
-          <div className="flex flex-col sm:flex-row items-center gap-4">
-            <Link 
-              href="#consultation" 
-              className="px-8 py-3.5 text-sm font-bold text-white bg-zinc-900 rounded-full hover:bg-zinc-800 transition-colors shadow-lg"
-            >
-              Book a Strategy Call
-            </Link>
-            <Link 
-              href="#waitlist" 
-              className="px-8 py-3.5 text-sm font-bold text-zinc-900 bg-white border border-zinc-200 rounded-full hover:bg-zinc-50 transition-colors shadow-sm"
-            >
-              Join EA Waitlist
-            </Link>
-          </div>
+          <HeroActions />
         </div>
         <div className="absolute bottom-10 animate-bounce">
           <ArrowDown className="w-6 h-6 text-zinc-300" />
@@ -74,12 +62,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Waitlist Section */}
-      <section id="waitlist" className="min-h-screen flex flex-col items-center justify-center relative px-4 border-t border-zinc-100">
-        <div className="w-full max-w-5xl mx-auto">
-          <VipWaitlist />
-        </div>
-      </section>
+      {/* Global Waitlist Modal */}
+      <VipWaitlist />
 
       {/* Discord Community Section */}
       <section className="py-32 px-4 bg-zinc-50 border-t border-zinc-100 text-center flex flex-col items-center justify-center">
