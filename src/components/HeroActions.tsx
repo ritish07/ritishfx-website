@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { openWaitlist } from "./VipWaitlist";
 
 export default function HeroActions() {
   return (
@@ -12,12 +11,12 @@ export default function HeroActions() {
       >
         Book a Strategy Call
       </Link>
-      <button 
-        onClick={openWaitlist}
+      <Link 
+        href="/free-tools"
         className="px-8 py-3.5 text-sm font-bold text-zinc-700 bg-white border border-zinc-200 rounded-full hover:bg-zinc-50 hover:border-zinc-300 transition-colors shadow-sm cursor-pointer"
       >
-        Momentum Pro Waitlist
-      </button>
+        Explore Free Tools
+      </Link>
     </div>
   );
 }

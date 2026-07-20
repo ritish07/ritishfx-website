@@ -65,6 +65,27 @@ export default function Home() {
       {/* Global Waitlist Modal */}
       <VipWaitlist />
 
+      {/* Founder's Edge Section */}
+      <section className="py-32 px-4 bg-white border-t border-zinc-100 text-center flex flex-col items-center justify-center">
+        <div className="max-w-2xl mx-auto">
+          <div className="w-16 h-16 bg-zinc-900 rounded-2xl flex items-center justify-center mx-auto mb-6">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 1200 1227" className="text-white">
+              <path d="M714.163 519.284L1160.89 0H1055.03L667.137 450.887L357.328 0H0L468.492 681.821L0 1226.37H105.866L515.491 750.218L842.672 1226.37H1200L714.137 519.284H714.163ZM569.165 687.828L521.697 619.934L144.011 79.6944H306.615L611.412 515.685L658.88 583.579L1055.08 1150.3H892.476L569.165 687.854V687.828Z" fill="currentColor"/>
+            </svg>
+          </div>
+          <h2 className="heading text-3xl font-bold text-zinc-900 mb-4">Deep Market Insights & Manual Execution</h2>
+          <p className="text-zinc-500 mb-8 text-lg">Every algorithm starts with a deep understanding of market mechanics. I share my personal, manual trade breakdowns, market structure analysis, and daily insights on X.</p>
+          <a 
+            href="https://x.com/" 
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center px-8 py-4 text-sm font-bold text-white bg-zinc-900 rounded-full hover:bg-zinc-800 transition-colors shadow-lg"
+          >
+            Read My Market Breakdowns on X
+          </a>
+        </div>
+      </section>
+
       {/* Discord Community Section */}
       <section className="py-32 px-4 bg-zinc-50 border-t border-zinc-100 text-center flex flex-col items-center justify-center">
         <div className="max-w-2xl mx-auto">
