@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  web:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    container_name: ritishfx-website
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+    volumes:
+      # Map the SQLite database to the host machine so data persists across container restarts
+      - ./prisma/dev.db:/app/prisma/dev.db
