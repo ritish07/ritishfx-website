@@ -23,7 +23,8 @@ export default function VipWaitlist() {
     capital: "",
     propFirm: "",
     struggle: "",
-    discordId: ""
+    discordId: "",
+    promoCode: ""
   });
 
   useEffect(() => {
@@ -107,12 +108,11 @@ export default function VipWaitlist() {
                 <div>
                   <label className="block text-sm font-semibold text-zinc-900 mb-1">Phone Number <span className="text-zinc-400 font-normal">(Optional)</span></label>
                   <p className="text-xs text-zinc-500 mb-1">For exclusive SMS early bird link.</p>
-                  <input type="tel" onChange={e => setFormData({...formData, phone: e.target.value})} className="w-full p-2.5 border border-zinc-300 rounded-xl focus:ring-2 focus:ring-primary focus:outline-none" placeholder="+1 (555) 000-0000" />
+                  <input type="tel" onChange={e => setFormData({...formData, phone: e.target.value})} className="w-full p-2.5 border border-zinc-300 rounded-xl focus:ring-2 focus:ring-primary focus:outline-none" placeholder="+91 98765 43210" />
                 </div>
                 <div>
                   <label className="block text-sm font-semibold text-zinc-900 mb-1">Country <span className="text-red-500">*</span></label>
-                  <p className="text-xs text-zinc-500 mb-1">To optimize server latency matching.</p>
-                  <input required type="text" onChange={e => setFormData({...formData, country: e.target.value})} className="w-full p-2.5 border border-zinc-300 rounded-xl focus:ring-2 focus:ring-primary focus:outline-none" placeholder="e.g. United Kingdom" />
+                  <input required type="text" onChange={e => setFormData({...formData, country: e.target.value})} className="w-full p-2.5 border border-zinc-300 rounded-xl focus:ring-2 focus:ring-primary focus:outline-none" placeholder="India" />
                 </div>
               </div>
 
@@ -156,6 +156,11 @@ export default function VipWaitlist() {
                     </label>
                   ))}
                 </div>
+              </div>
+
+              <div>
+                <label className="block text-sm font-semibold text-zinc-900 mb-1">Promo Code <span className="text-zinc-400 font-normal">(Optional)</span></label>
+                <input type="text" onChange={e => setFormData({...formData, promoCode: e.target.value})} className="w-full p-2.5 border border-zinc-300 rounded-xl focus:ring-2 focus:ring-primary focus:outline-none" placeholder="e.g. VIP2026" />
               </div>
 
               <button disabled={loading} type="submit" className="w-full mt-2 bg-primary text-white font-bold py-3.5 rounded-xl hover:bg-primary-hover transition-colors flex items-center justify-center disabled:opacity-70 shadow-lg">

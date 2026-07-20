@@ -32,6 +32,7 @@ export async function POST(req: Request) {
         capital: data.capital,
         propFirm: data.propFirm,
         struggle: data.struggle,
+        promoCode: data.promoCode || null,
       }
     });
 
