@@ -86,7 +86,7 @@ export default function VipWaitlist() {
             <div className="bg-primary p-6 md:p-8 text-center relative overflow-hidden shrink-0">
               <div className="absolute top-0 right-0 p-6 opacity-10"><Sparkles className="w-24 h-24 text-white" /></div>
               <h2 className="text-2xl font-bold text-white mb-1 relative z-10">Momentum Pro EA</h2>
-              <p className="text-white/80 text-sm relative z-10">Join the VIP Waitlist for massive Early Bird pricing</p>
+              <p className="text-white/80 text-sm relative z-10">Join the VIP Waitlist for massive Early Bird discount</p>
             </div>
             
             <form onSubmit={handleSubmit} className="p-6 space-y-4">
