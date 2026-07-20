@@ -158,11 +158,6 @@ export default function VipWaitlist() {
                 </div>
               </div>
 
-              <div>
-                <label className="block text-sm font-semibold text-zinc-900 mb-1">Promo Code <span className="text-zinc-400 font-normal">(Optional)</span></label>
-                <input type="text" onChange={e => setFormData({...formData, promoCode: e.target.value})} className="w-full p-2.5 border border-zinc-300 rounded-xl focus:ring-2 focus:ring-primary focus:outline-none" placeholder="e.g. VIP2026" />
-              </div>
-
               <button disabled={loading} type="submit" className="w-full mt-2 bg-primary text-white font-bold py-3.5 rounded-xl hover:bg-primary-hover transition-colors flex items-center justify-center disabled:opacity-70 shadow-lg">
                 {loading ? "Securing Spot..." : "Secure My Early Bird Spot"} <ArrowRight className="w-4 h-4 ml-2" />
               </button>
