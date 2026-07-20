@@ -7,10 +7,26 @@ services:
       dockerfile: Dockerfile
     container_name: ritishfx-website
     restart: unless-stopped
-    ports:
-      - "80:3000"
     environment:
       - NODE_ENV=production
     volumes:
       # Map the SQLite database to the host machine so data persists across container restarts
       - ./prisma/dev.db:/app/prisma/dev.db
+
+  caddy:
+    image: caddy:2-alpine
+    container_name: caddy-proxy
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      - web
+
+volumes:
+  caddy_data:
+  caddy_config:
