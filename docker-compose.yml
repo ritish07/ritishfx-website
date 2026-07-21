@@ -10,8 +10,8 @@ services:
     environment:
       - NODE_ENV=production
     volumes:
-      # Map the SQLite database to the host machine so data persists across container restarts
-      - ./prisma/dev.db:/app/prisma/dev.db
+      # Map the entire prisma directory to prevent bind mount breakage during SQLite schema updates
+      - ./prisma:/app/prisma
 
   caddy:
     image: caddy:2-alpine

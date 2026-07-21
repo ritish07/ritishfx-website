@@ -2,6 +2,9 @@ import { cookies } from "next/headers";
 import { PrismaClient } from "@prisma/client";
 import { Lock, Users, MousePointerClick, CheckSquare } from "lucide-react";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 const prisma = new PrismaClient();
 
 async function authenticate(data: FormData) {
