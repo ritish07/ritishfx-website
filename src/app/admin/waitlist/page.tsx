@@ -4,6 +4,7 @@ import { Lock, Users, MousePointerClick, CheckSquare } from "lucide-react";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
+// Force Next.js to recompile this file to bust the Docker cache
 
 const prisma = new PrismaClient();
 
