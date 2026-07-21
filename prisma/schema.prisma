@@ -76,3 +76,9 @@ model License {
   status           String   @default("ACTIVE") // ACTIVE, REVOKED, EXPIRED
   createdAt        DateTime @default(now())
 }
+
+model Analytics {
+  id             String   @id @default("global")
+  visits         Int      @default(0)
+  waitlistClicks Int      @default(0)
+}
