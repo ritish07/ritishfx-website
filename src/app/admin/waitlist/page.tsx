@@ -1,6 +1,7 @@
 import { cookies } from "next/headers";
 import { PrismaClient } from "@prisma/client";
 import { Lock, Users, MousePointerClick, CheckSquare } from "lucide-react";
+import DownloadCsvButton from "@/components/DownloadCsvButton";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
@@ -120,9 +121,12 @@ export default async function AdminWaitlistPage() {
 
         {/* Data Table */}
         <div className="bg-white rounded-2xl shadow-sm border border-zinc-200 overflow-hidden">
-          <div className="p-6 border-b border-zinc-200 bg-zinc-50/50 flex justify-between items-center">
-            <h2 className="text-xl font-bold text-zinc-900">Waitlist Submissions</h2>
-            <span className="px-3 py-1 bg-zinc-100 text-zinc-600 font-bold rounded-full text-sm">{completions} Total</span>
+          <div className="p-6 border-b border-zinc-200 bg-zinc-50/50 flex justify-between items-center flex-wrap gap-4">
+            <div className="flex items-center gap-3">
+              <h2 className="text-xl font-bold text-zinc-900">Waitlist Submissions</h2>
+              <span className="px-3 py-1 bg-zinc-100 text-zinc-600 font-bold rounded-full text-sm">{completions} Total</span>
+            </div>
+            <DownloadCsvButton data={submissions} />
           </div>
           <div className="overflow-x-auto">
             <table className="w-full text-left text-sm whitespace-nowrap">
