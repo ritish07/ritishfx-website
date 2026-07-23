@@ -11,7 +11,7 @@ export default function SecretDashboardPage() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // The secret code to enter the dashboard
-    if (password === "ritish123") {
+    if (password === "1bhkg7^y2be8%") {
       setIsAuthenticated(true);
       setError(false);
     } else {
