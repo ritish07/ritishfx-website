@@ -134,7 +134,7 @@ void PushTradeStats(ulong dealTicket)
 
    char post[], result[];
    string headers = "Content-Type: application/json\r\nAuthorization: Bearer " + WebhookSecret + "\r\n";
-   StringToCharArray(json, post, 0, WHOLE_ARRAY, CP_UTF8);
+   StringToCharArray(json, post, 0, StringLen(json), CP_UTF8);
 
    string resHeaders;
    int res = WebRequest("POST", WebhookURL, headers, 5000, post, result, resHeaders);
@@ -161,7 +161,7 @@ void PushAccountStats()
 
    char post[], result[];
    string headers = "Content-Type: application/json\r\nAuthorization: Bearer " + WebhookSecret + "\r\n";
-   StringToCharArray(json, post, 0, WHOLE_ARRAY, CP_UTF8);
+   StringToCharArray(json, post, 0, StringLen(json), CP_UTF8);
 
    string resHeaders;
    int res = WebRequest("POST", WebhookURL, headers, 5000, post, result, resHeaders);
