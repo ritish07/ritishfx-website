@@ -26,24 +26,32 @@ void OnStart()
       return;
    }
    
+   ulong outTickets[];
    int total = HistoryDealsTotal();
    int synced = 0;
    
    Print("Found ", total, " total deals in history. Searching for closed trades...");
    
+   // 1. Collect all OUT deal tickets first to avoid overwriting history cache
    for(int i = 0; i < total; i++)
    {
       ulong dealTicket = HistoryDealGetTicket(i);
-      
-      // We only care about trades that were closed
       if(HistoryDealGetInteger(dealTicket, DEAL_ENTRY) == DEAL_ENTRY_OUT)
       {
-         PushTradeStats(dealTicket);
-         synced++;
-         
-         // Sleep slightly to prevent rate limiting or crashing the Next.js API
-         Sleep(SleepBetweenRequestsMs); 
+         int size = ArraySize(outTickets);
+         ArrayResize(outTickets, size + 1);
+         outTickets[size] = dealTicket;
       }
+   }
+   
+   // 2. Process each OUT deal ticket
+   for(int i = 0; i < ArraySize(outTickets); i++)
+   {
+      PushTradeStats(outTickets[i]);
+      synced++;
+      
+      // Sleep slightly to prevent rate limiting or crashing the Next.js API
+      Sleep(SleepBetweenRequestsMs); 
    }
    
    // Push the final account equity/balance
