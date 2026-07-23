@@ -82,3 +82,23 @@ model Analytics {
   visits         Int      @default(0)
   waitlistClicks Int      @default(0)
 }
+
+model MT5ForwardTest {
+  id          String   @id @default("live_account")
+  balance     Float    @default(0)
+  equity      Float    @default(0)
+  profit      Float    @default(0)
+  winRate     Float    @default(0)
+  drawdown    Float    @default(0)
+  equityCurve String   @default("[]") // JSON string of { date, value }
+  updatedAt   DateTime @updatedAt
+}
+
+model MT5Trade {
+  id          String   @id // Ticket number from MT5
+  pair        String
+  type        String   // BUY or SELL
+  profit      Float
+  openTime    DateTime
+  closeTime   DateTime
+}
