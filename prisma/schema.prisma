@@ -101,4 +101,12 @@ model MT5Trade {
   profit      Float
   openTime    DateTime
   closeTime   DateTime
+  durationMin    Float?
+  requestedPrice Float?
+  openPrice      Float?
+  slippagePts    Float?
+  spreadPts      Float?
+  brokerHour     Int?
+  brokerMinute   Int?
+  profitPts      Float?
 }

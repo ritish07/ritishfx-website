@@ -52,7 +52,15 @@ export async function POST(req: Request) {
           type: data.orderType,
           profit: data.profit,
           openTime: new Date(data.openTime),
-          closeTime: new Date(data.closeTime)
+          closeTime: new Date(data.closeTime),
+          durationMin: data.durationMin,
+          requestedPrice: data.requestedPrice,
+          openPrice: data.openPrice,
+          slippagePts: data.slippagePts,
+          spreadPts: data.spreadPts,
+          brokerHour: data.brokerHour,
+          brokerMinute: data.brokerMinute,
+          profitPts: data.profitPts
         }
       });
       return NextResponse.json({ success: true, message: "Trade recorded" });
