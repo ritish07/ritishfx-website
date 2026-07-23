@@ -128,8 +128,8 @@ void PushTradeStats(ulong dealTicket)
    int brokerMinute = dt.min;
    
    string json = StringFormat(
-      "{\"type\":\"trade_closed\", \"ticket\":\"%d\", \"pair\":\"%s\", \"orderType\":\"%s\", \"profit\":%.2f, \"openTime\":\"%s\", \"closeTime\":\"%s\", \"durationMin\":%.2f, \"requestedPrice\":%.5f, \"openPrice\":%.5f, \"slippagePts\":%.1f, \"spreadPts\":%.1f, \"brokerHour\":%d, \"brokerMinute\":%d, \"profitPts\":%.1f}",
-      dealTicket, dealSymbol, orderType, profit, TimeToString(openTime, TIME_DATE|TIME_MINUTES), TimeToString(closeTime, TIME_DATE|TIME_MINUTES), durationMin, requestedPrice, entryPrice, slippagePts, spreadPts, brokerHour, brokerMinute, profitPts
+      "{\"type\":\"trade_closed\", \"ticket\":\"%s\", \"pair\":\"%s\", \"orderType\":\"%s\", \"profit\":%.2f, \"openTime\":\"%s\", \"closeTime\":\"%s\", \"durationMin\":%.2f, \"requestedPrice\":%.5f, \"openPrice\":%.5f, \"slippagePts\":%.1f, \"spreadPts\":%.1f, \"brokerHour\":%d, \"brokerMinute\":%d, \"profitPts\":%.1f}",
+      IntegerToString(dealTicket), dealSymbol, orderType, profit, TimeToString(openTime, TIME_DATE|TIME_MINUTES), TimeToString(closeTime, TIME_DATE|TIME_MINUTES), durationMin, requestedPrice, entryPrice, slippagePts, spreadPts, brokerHour, brokerMinute, profitPts
    );
 
    char post[], result[];

@@ -41,7 +41,7 @@ export async function POST(req: Request) {
     // Insert new closed trade
     if (data.type === "trade_closed") {
       await prisma.mT5Trade.upsert({
-        where: { id: data.ticket },
+        where: { id: String(data.ticket) },
         update: {
           profit: data.profit,
           closeTime: new Date(data.closeTime.replace(/\./g, "-"))
