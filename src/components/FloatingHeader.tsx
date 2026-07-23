@@ -29,10 +29,10 @@ export default function FloatingHeader() {
             Book a Call
           </Link>
           <Link 
-            href="/waitlist"
+            href="/momentum-pro"
             className="px-5 py-2 text-sm font-bold text-white bg-zinc-900 rounded-full hover:bg-zinc-800 transition-colors shadow-sm cursor-pointer"
           >
-            Momentum Pro Waitlist
+            Momentum Pro
           </Link>
           <a
             href="https://discord.gg/P6Wp8YqpFJ"
@@ -87,11 +87,11 @@ export default function FloatingHeader() {
           </Link>
           <div className="h-px w-full bg-zinc-100 my-2"></div>
           <Link 
-            href="/waitlist"
+            href="/momentum-pro"
             onClick={() => setIsMobileMenuOpen(false)}
             className="w-full mt-2 px-4 py-4 text-base font-bold text-white bg-zinc-900 rounded-xl hover:bg-zinc-800 transition-colors shadow-sm text-center block"
           >
-            Momentum Pro Waitlist
+            Momentum Pro
           </Link>
           
           <div className="flex items-center gap-6 mt-6 px-4 pb-2">

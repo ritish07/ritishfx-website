@@ -31,6 +31,9 @@ export default function MomentumProPage() {
             <a href="#waitlist" className="px-8 py-4 bg-zinc-900 text-white font-bold rounded-full hover:bg-zinc-800 transition-colors shadow-lg flex items-center">
               Join the Waitlist <ArrowDown className="ml-2 w-5 h-5" />
             </a>
+            <a href="#dashboard" className="px-8 py-4 bg-white text-zinc-900 border-2 border-zinc-200 font-bold rounded-full hover:bg-zinc-50 transition-colors shadow-sm flex items-center">
+              See Live Results
+            </a>
           </div>
 
           {/* Key Features Grid */}
@@ -55,7 +58,7 @@ export default function MomentumProPage() {
       </section>
 
       {/* Live Dashboard Section */}
-      <section className="py-20 px-4 bg-zinc-50 border-t border-zinc-200">
+      <section id="dashboard" className="py-20 px-4 bg-zinc-50 border-t border-zinc-200">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-10">
             <h2 className="text-3xl md:text-4xl font-bold text-zinc-900 mb-4">100% Transparent Results</h2>
