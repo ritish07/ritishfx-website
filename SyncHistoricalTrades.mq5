@@ -141,6 +141,7 @@ void PushTradeStats(ulong dealTicket)
    
    if(res != 200) {
       Print("Failed to sync ticket ", dealTicket, ". HTTP Code: ", res);
+      Print("Error: ", CharArrayToString(result));
    }
 }
 
