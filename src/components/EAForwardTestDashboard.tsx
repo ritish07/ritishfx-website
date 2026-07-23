@@ -49,8 +49,8 @@ export default function EAForwardTestDashboard() {
     );
   }
 
-  // Fallback dummy data if DB is empty for demo purposes
-  const stats = data?.stats?.balance ? data.stats : {
+  // Fallback dummy data if DB connection completely fails (data is null)
+  const stats = data?.stats || {
     balance: 10450.20,
     equity: 10450.20,
     profit: 450.20,
@@ -65,7 +65,7 @@ export default function EAForwardTestDashboard() {
     ]
   };
 
-  const trades = data?.trades && data.trades.length > 0 ? data.trades : [
+  const trades = data?.trades || [
     { id: "1", pair: "XAUUSD", type: "BUY", profit: 120.50, profitPts: 1205, durationMin: 14.5, slippagePts: 3.0, spreadPts: 12.0, closeTime: new Date().toISOString() },
     { id: "2", pair: "EURUSD", type: "SELL", profit: 45.20, profitPts: 452, durationMin: 0.8, slippagePts: 1.0, spreadPts: 14.0, closeTime: new Date(Date.now() - 86400000).toISOString() },
     { id: "3", pair: "GBPUSD", type: "BUY", profit: -15.00, profitPts: -150, durationMin: 1.2, slippagePts: 5.0, spreadPts: 14.0, closeTime: new Date(Date.now() - 172800000).toISOString() },
