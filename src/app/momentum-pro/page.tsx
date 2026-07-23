@@ -2,7 +2,6 @@ import FloatingHeader from "@/components/FloatingHeader";
 import InteractiveDots from "@/components/InteractiveDots";
 import Link from "next/link";
 import WaitlistForm from "@/components/WaitlistForm";
-import EAForwardTestDashboard from "@/components/EAForwardTestDashboard";
 import { ArrowDown, Zap, Shield, Target } from "lucide-react";
 
 export default function MomentumProPage() {
@@ -16,8 +15,8 @@ export default function MomentumProPage() {
         
         <div className="w-full max-w-5xl mx-auto relative z-10">
           <div className="inline-flex items-center px-4 py-1.5 bg-zinc-100 text-zinc-600 text-sm font-medium rounded-full mb-8 border border-zinc-200">
-            <span className="w-2 h-2 bg-green-500 rounded-full mr-2 animate-pulse"></span>
-            Forward Testing Live
+            <span className="w-2 h-2 bg-yellow-500 rounded-full mr-2"></span>
+            Forward Testing (Coming Soon)
           </div>
           
           <h1 className="heading text-5xl md:text-7xl font-bold text-zinc-900 mb-6 tracking-tight">
@@ -63,11 +62,14 @@ export default function MomentumProPage() {
           <div className="text-center mb-10">
             <h2 className="text-3xl md:text-4xl font-bold text-zinc-900 mb-4">100% Transparent Results</h2>
             <p className="text-lg text-zinc-500 max-w-2xl mx-auto">
-              We don't hide behind backtests. Below is our live, real-time forward test running on a demo account. The data refreshes directly from MT5.
+              We don't hide behind backtests. Our live, real-time forward test on a demo account is currently being set up. Check back soon for live data direct from MT5!
             </p>
           </div>
           
-          <EAForwardTestDashboard />
+          <div className="bg-white rounded-3xl border border-zinc-200 p-12 text-center shadow-sm">
+            <h3 className="text-2xl font-bold text-zinc-400 mb-2">Dashboard Coming Soon</h3>
+            <p className="text-zinc-500">We are currently linking our MT5 terminals to the website.</p>
+          </div>
         </div>
       </section>
 
