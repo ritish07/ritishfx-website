@@ -36,11 +36,7 @@ export default function BookACallPage() {
             <h3 className="text-2xl font-bold text-zinc-900 mb-3">Automation Strategy Call</h3>
             <p className="text-zinc-500 mb-8">Secure your slot via Topmate for a private video session to discuss your trading strategy and bot requirements.</p>
             
-            <div className="flex items-end justify-center gap-2 mb-8">
-              <span className="text-4xl font-extrabold text-zinc-900">₹499</span>
-              <span className="text-zinc-500 font-medium mb-1">/ session</span>
-            </div>
-            
+
             <a 
               href="https://topmate.io/ritishfx" 
               target="_blank"
