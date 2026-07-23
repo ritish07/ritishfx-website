@@ -9,7 +9,7 @@
 #property script_show_inputs
 
 input string   WebhookURL = "https://ritishlabs.com/api/mt5/webhook"; 
-input string   WebhookSecret = "MT5_SECURE_TOKEN_2024";
+input string   WebhookSecret = "default_secret";
 input int      SleepBetweenRequestsMs = 200; // Pause between requests to prevent server overload
 
 //+------------------------------------------------------------------+
