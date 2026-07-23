@@ -44,15 +44,15 @@ export async function POST(req: Request) {
         where: { id: data.ticket },
         update: {
           profit: data.profit,
-          closeTime: new Date(data.closeTime)
+          closeTime: new Date(data.closeTime.replace(/\./g, "-"))
         },
         create: {
-          id: data.ticket,
+          id: String(data.ticket),
           pair: data.pair,
           type: data.orderType,
           profit: data.profit,
-          openTime: new Date(data.openTime),
-          closeTime: new Date(data.closeTime),
+          openTime: new Date(data.openTime.replace(/\./g, "-")),
+          closeTime: new Date(data.closeTime.replace(/\./g, "-")),
           durationMin: data.durationMin,
           requestedPrice: data.requestedPrice,
           openPrice: data.openPrice,
