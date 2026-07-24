@@ -1,11 +1,18 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
-import { Menu, X } from "lucide-react";
+import { useState, useEffect } from "react";
+import { Menu, X, ShieldAlert } from "lucide-react";
 
 export default function FloatingHeader() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
+
+  useEffect(() => {
+    if (document.cookie.includes("ritish_admin_access=true")) {
+      setIsAdmin(true);
+    }
+  }, []);
 
   return (
     <header className="fixed top-0 left-0 w-full z-50 transition-all duration-300">
@@ -16,6 +23,14 @@ export default function FloatingHeader() {
         
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-4">
+          {isAdmin && (
+            <Link 
+              href="/admin" 
+              className="px-5 py-2 text-sm font-bold text-red-600 bg-red-50 rounded-full hover:bg-red-100 transition-colors shadow-sm cursor-pointer flex items-center gap-2 border border-red-100"
+            >
+              <ShieldAlert className="w-4 h-4" /> Admin
+            </Link>
+          )}
           <Link 
             href="/free-tools" 
             className="px-5 py-2 text-sm font-medium text-zinc-600 hover:text-zinc-900 transition-colors"
@@ -71,6 +86,15 @@ export default function FloatingHeader() {
       {/* Mobile Navigation Menu */}
       {isMobileMenuOpen && (
         <div className="md:hidden absolute top-full left-0 w-full bg-white shadow-xl border-t border-zinc-100 flex flex-col p-4 animate-in slide-in-from-top-4 fade-in duration-200">
+          {isAdmin && (
+            <Link 
+              href="/admin" 
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="px-4 py-4 text-base font-bold text-red-600 hover:bg-red-50 rounded-xl transition-colors flex items-center gap-2"
+            >
+              <ShieldAlert className="w-5 h-5" /> Admin Dashboard
+            </Link>
+          )}
           <Link 
             href="/free-tools" 
             onClick={() => setIsMobileMenuOpen(false)}
