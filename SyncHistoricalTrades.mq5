@@ -135,9 +135,48 @@ void PushTradeStats(ulong dealTicket)
    int brokerHour = dt.hour;
    int brokerMinute = dt.min;
    
+   // --- CALCULATE DRAWDOWN AND PIPS FROM PDH ---
+   double maxDrawdownPts = 0.0;
+   double pipsFromPDH = 0.0;
+   
+   double highArray[], lowArray[];
+   int copiedHigh = CopyHigh(dealSymbol, PERIOD_M1, openTime, closeTime, highArray);
+   int copiedLow = CopyLow(dealSymbol, PERIOD_M1, openTime, closeTime, lowArray);
+   
+   if(copiedHigh > 0 && copiedLow > 0)
+   {
+      double highestHigh = highArray[ArrayMaximum(highArray, 0, copiedHigh)];
+      double lowestLow = lowArray[ArrayMinimum(lowArray, 0, copiedLow)];
+      
+      int shiftD1 = iBarShift(dealSymbol, PERIOD_D1, openTime);
+      double prevHigh = iHigh(dealSymbol, PERIOD_D1, shiftD1 + 1);
+      double prevLow = iLow(dealSymbol, PERIOD_D1, shiftD1 + 1);
+      
+      if(type == DEAL_TYPE_BUY)
+      {
+         maxDrawdownPts = (entryPrice - lowestLow) / pointVal;
+         if(maxDrawdownPts < 0) maxDrawdownPts = 0;
+         
+         if(prevHigh > 0 && entryPrice >= prevHigh)
+            pipsFromPDH = (highestHigh - prevHigh) / pointVal / 10.0;
+         else
+            pipsFromPDH = (highestHigh - entryPrice) / pointVal / 10.0;
+      }
+      else if(type == DEAL_TYPE_SELL) // SELL
+      {
+         maxDrawdownPts = (highestHigh - entryPrice) / pointVal;
+         if(maxDrawdownPts < 0) maxDrawdownPts = 0;
+         
+         if(prevLow > 0 && entryPrice <= prevLow)
+            pipsFromPDH = (prevLow - lowestLow) / pointVal / 10.0;
+         else
+            pipsFromPDH = (entryPrice - lowestLow) / pointVal / 10.0;
+      }
+   }
+   
    string json = StringFormat(
-      "{\"type\":\"trade_closed\", \"ticket\":\"%s\", \"pair\":\"%s\", \"orderType\":\"%s\", \"profit\":%.2f, \"openTime\":\"%s\", \"closeTime\":\"%s\", \"durationMin\":%.2f, \"requestedPrice\":%.5f, \"openPrice\":%.5f, \"slippagePts\":%.1f, \"spreadPts\":%.1f, \"brokerHour\":%d, \"brokerMinute\":%d, \"profitPts\":%.1f}",
-      IntegerToString(dealTicket), dealSymbol, orderType, profit, TimeToString(openTime, TIME_DATE|TIME_MINUTES), TimeToString(closeTime, TIME_DATE|TIME_MINUTES), durationMin, requestedPrice, entryPrice, slippagePts, spreadPts, brokerHour, brokerMinute, profitPts
+      "{\"type\":\"trade_closed\", \"ticket\":\"%s\", \"pair\":\"%s\", \"orderType\":\"%s\", \"profit\":%.2f, \"openTime\":\"%s\", \"closeTime\":\"%s\", \"durationMin\":%.2f, \"requestedPrice\":%.5f, \"openPrice\":%.5f, \"slippagePts\":%.1f, \"spreadPts\":%.1f, \"brokerHour\":%d, \"brokerMinute\":%d, \"profitPts\":%.1f, \"maxDrawdownPts\":%.1f, \"pipsFromPDH\":%.1f}",
+      IntegerToString(dealTicket), dealSymbol, orderType, profit, TimeToString(openTime, TIME_DATE|TIME_MINUTES), TimeToString(closeTime, TIME_DATE|TIME_MINUTES), durationMin, requestedPrice, entryPrice, slippagePts, spreadPts, brokerHour, brokerMinute, profitPts, maxDrawdownPts, pipsFromPDH
    );
 
    char post[], result[];
