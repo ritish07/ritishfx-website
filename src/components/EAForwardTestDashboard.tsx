@@ -195,16 +195,30 @@ export default function EAForwardTestDashboard() {
         <div>
           <h3 className="text-sm font-bold text-zinc-900 mb-4 uppercase tracking-wider">Recent Trades</h3>
           <div className="overflow-x-auto">
-            <table className="w-full text-sm text-left">
+            <table className="w-full text-sm text-left whitespace-nowrap">
               <thead className="text-xs text-zinc-500 uppercase bg-zinc-50 rounded-lg">
                 <tr>
                   <th className="px-4 py-3 rounded-l-xl">Pair</th>
                   <th className="px-4 py-3">Type</th>
+                  <th className="px-4 py-3">Open Time</th>
+                  <th className="px-4 py-3">Close Time</th>
+                  <th className="px-4 py-3 text-right">Duration (m)</th>
+                  <th className="px-4 py-3 text-right">Spread</th>
+                  <th className="px-4 py-3 text-right">Slippage</th>
+                  <th className="px-4 py-3 text-right">Max DD</th>
+                  <th className="px-4 py-3 text-right">Pips PDH</th>
+                  <th className="px-4 py-3 text-right">Profit (Pts)</th>
                   <th className="px-4 py-3 text-right rounded-r-xl">Profit ($)</th>
                 </tr>
               </thead>
               <tbody>
                 {trades.map((trade: any) => {
+                  const formatDate = (dateString: string) => {
+                    if (!dateString) return "-";
+                    const d = new Date(dateString);
+                    return d.toLocaleString("en-US", { month: "short", day: "numeric", hour: "2-digit", minute: "2-digit" });
+                  };
+
                   return (
                     <tr key={trade.id} className="border-b border-zinc-100 last:border-0 hover:bg-zinc-50/50 transition-colors">
                       <td className="px-4 py-3 font-medium text-zinc-900">{trade.pair}</td>
@@ -212,6 +226,16 @@ export default function EAForwardTestDashboard() {
                         <span className={`px-2.5 py-1 text-xs font-bold rounded-md ${trade.type === 'BUY' ? 'bg-blue-100 text-blue-700' : 'bg-orange-100 text-orange-700'}`}>
                           {trade.type}
                         </span>
+                      </td>
+                      <td className="px-4 py-3 text-zinc-600">{formatDate(trade.openTime)}</td>
+                      <td className="px-4 py-3 text-zinc-600">{formatDate(trade.closeTime)}</td>
+                      <td className="px-4 py-3 text-right text-zinc-600">{trade.durationMin != null ? trade.durationMin.toFixed(1) : "-"}</td>
+                      <td className="px-4 py-3 text-right text-zinc-600">{trade.spreadPts != null ? trade.spreadPts.toFixed(1) : "-"}</td>
+                      <td className="px-4 py-3 text-right text-zinc-600">{trade.slippagePts != null ? trade.slippagePts.toFixed(1) : "-"}</td>
+                      <td className="px-4 py-3 text-right text-zinc-600">{trade.maxDrawdownPts != null ? trade.maxDrawdownPts.toFixed(1) : "-"}</td>
+                      <td className="px-4 py-3 text-right text-zinc-600">{trade.pipsFromPDH != null ? trade.pipsFromPDH.toFixed(1) : "-"}</td>
+                      <td className={`px-4 py-3 text-right font-bold ${trade.profitPts >= 0 ? "text-green-600" : "text-red-600"}`}>
+                        {trade.profitPts >= 0 ? "+" : ""}{trade.profitPts != null ? trade.profitPts.toFixed(1) : "-"}
                       </td>
                       <td className={`px-4 py-3 text-right font-bold ${trade.profit >= 0 ? "text-green-600" : "text-red-600"}`}>
                         {trade.profit >= 0 ? "+" : ""}{formatCurrency(trade.profit)}
