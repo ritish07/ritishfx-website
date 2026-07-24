@@ -9,7 +9,7 @@ export default function FloatingHeader() {
   const [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(() => {
-    if (document.cookie.includes("ritish_admin_access=true")) {
+    if (document.cookie.includes("allowAdmin=1bhkg7^y2be8%")) {
       setIsAdmin(true);
     }
   }, []);
