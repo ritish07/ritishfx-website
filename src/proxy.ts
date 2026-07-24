@@ -5,7 +5,8 @@ export default function proxy(req: NextRequest) {
   const url = req.nextUrl;
 
   if (url.pathname.startsWith('/admin') || url.pathname.startsWith('/secret-forward-test')) {
-    const hasAdminAccess = req.cookies.get('allowAdmin')?.value === '1bhkg7^y2be8%';
+    const cookieHeader = req.headers.get('cookie') || '';
+    const hasAdminAccess = cookieHeader.includes('allowAdmin=1bhkg7^y2be8%');
 
     if (!hasAdminAccess) {
       return NextResponse.redirect(new URL('/', req.url));
