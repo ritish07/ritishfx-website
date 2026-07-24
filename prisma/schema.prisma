@@ -109,4 +109,6 @@ model MT5Trade {
   brokerHour     Int?
   brokerMinute   Int?
   profitPts      Float?
+  maxDrawdownPts Float?
+  pipsFromPDH    Float?
 }

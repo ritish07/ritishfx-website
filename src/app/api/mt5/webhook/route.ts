@@ -44,7 +44,9 @@ export async function POST(req: Request) {
         where: { id: String(data.ticket) },
         update: {
           profit: data.profit,
-          closeTime: new Date(data.closeTime.replace(/\./g, "-"))
+          closeTime: new Date(data.closeTime.replace(/\./g, "-")),
+          maxDrawdownPts: data.maxDrawdownPts,
+          pipsFromPDH: data.pipsFromPDH
         },
         create: {
           id: String(data.ticket),
@@ -60,7 +62,9 @@ export async function POST(req: Request) {
           spreadPts: data.spreadPts,
           brokerHour: data.brokerHour,
           brokerMinute: data.brokerMinute,
-          profitPts: data.profitPts
+          profitPts: data.profitPts,
+          maxDrawdownPts: data.maxDrawdownPts,
+          pipsFromPDH: data.pipsFromPDH
         }
       });
       return NextResponse.json({ success: true, message: "Trade recorded" });
