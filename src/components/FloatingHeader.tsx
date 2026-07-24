@@ -24,12 +24,12 @@ export default function FloatingHeader() {
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-4">
           {isAdmin && (
-            <Link 
+            <a 
               href="/admin" 
               className="px-5 py-2 text-sm font-bold text-red-600 bg-red-50 rounded-full hover:bg-red-100 transition-colors shadow-sm cursor-pointer flex items-center gap-2 border border-red-100"
             >
               <ShieldAlert className="w-4 h-4" /> Admin
-            </Link>
+            </a>
           )}
           <Link 
             href="/free-tools" 
@@ -87,13 +87,13 @@ export default function FloatingHeader() {
       {isMobileMenuOpen && (
         <div className="md:hidden absolute top-full left-0 w-full bg-white shadow-xl border-t border-zinc-100 flex flex-col p-4 animate-in slide-in-from-top-4 fade-in duration-200">
           {isAdmin && (
-            <Link 
+            <a 
               href="/admin" 
               onClick={() => setIsMobileMenuOpen(false)}
               className="px-4 py-4 text-base font-bold text-red-600 hover:bg-red-50 rounded-xl transition-colors flex items-center gap-2"
             >
               <ShieldAlert className="w-5 h-5" /> Admin Dashboard
-            </Link>
+            </a>
           )}
           <Link 
             href="/free-tools" 
