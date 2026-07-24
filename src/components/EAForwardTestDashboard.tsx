@@ -178,21 +178,11 @@ export default function EAForwardTestDashboard() {
                 <tr>
                   <th className="px-4 py-3 rounded-l-xl">Pair</th>
                   <th className="px-4 py-3">Type</th>
-                  <th className="px-4 py-3 text-right">Duration</th>
                   <th className="px-4 py-3 text-right rounded-r-xl">Profit ($)</th>
                 </tr>
               </thead>
               <tbody>
                 {trades.map((trade: any) => {
-                  // Format duration as MM:SS
-                  let durationStr = '-';
-                  if (trade.durationMin !== null && trade.durationMin !== undefined) {
-                    const totalSeconds = Math.round(trade.durationMin * 60);
-                    const minutes = Math.floor(totalSeconds / 60);
-                    const seconds = totalSeconds % 60;
-                    durationStr = `${minutes}:${seconds.toString().padStart(2, '0')}`;
-                  }
-
                   return (
                     <tr key={trade.id} className="border-b border-zinc-100 last:border-0 hover:bg-zinc-50/50 transition-colors">
                       <td className="px-4 py-3 font-medium text-zinc-900">{trade.pair}</td>
@@ -201,7 +191,6 @@ export default function EAForwardTestDashboard() {
                           {trade.type}
                         </span>
                       </td>
-                      <td className="px-4 py-3 text-right text-zinc-500 font-mono">{durationStr}</td>
                       <td className={`px-4 py-3 text-right font-bold ${trade.profit >= 0 ? "text-green-600" : "text-red-600"}`}>
                         {trade.profit >= 0 ? "+" : ""}{formatCurrency(trade.profit)}
                       </td>
