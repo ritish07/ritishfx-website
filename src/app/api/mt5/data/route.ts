@@ -5,13 +5,26 @@ const prisma = new PrismaClient();
 
 export const dynamic = "force-dynamic";
 
-export async function GET() {
+export async function GET(req: Request) {
   try {
+    const url = new URL(req.url);
+    const requestedAccountId = url.searchParams.get("accountId");
+
+    // Fetch all available accounts
+    const accounts = await prisma.mT5ForwardTest.findMany({
+      select: { id: true }
+    });
+    const availableAccounts = accounts.map(a => a.id);
+    
+    // Determine which account to show
+    let targetAccountId = requestedAccountId || (availableAccounts.length > 0 ? availableAccounts[0] : "live_account");
+
     const stats = await prisma.mT5ForwardTest.findUnique({
-      where: { id: "live_account" }
+      where: { id: targetAccountId }
     });
 
     const allTrades = await prisma.mT5Trade.findMany({
+      where: { accountId: targetAccountId },
       orderBy: { closeTime: "asc" } // chronological order for equity curve
     });
 
@@ -61,6 +74,8 @@ export async function GET() {
     const recentTrades = [...allTrades].sort((a, b) => b.closeTime.getTime() - a.closeTime.getTime()).slice(0, 15);
 
     return NextResponse.json({
+      availableAccounts,
+      selectedAccount: targetAccountId,
       stats: {
         balance: currentBalance,
         equity: stats?.equity || currentBalance,

@@ -174,9 +174,11 @@ void PushTradeStats(ulong dealTicket)
       }
    }
    
+   string accountId = IntegerToString(AccountInfoInteger(ACCOUNT_LOGIN));
+   
    string json = StringFormat(
-      "{\"type\":\"trade_closed\", \"ticket\":\"%s\", \"pair\":\"%s\", \"orderType\":\"%s\", \"profit\":%.2f, \"openTime\":\"%s\", \"closeTime\":\"%s\", \"durationMin\":%.2f, \"requestedPrice\":%.5f, \"openPrice\":%.5f, \"slippagePts\":%.1f, \"spreadPts\":%.1f, \"brokerHour\":%d, \"brokerMinute\":%d, \"profitPts\":%.1f, \"maxDrawdownPts\":%.1f, \"pipsFromPDH\":%.1f}",
-      IntegerToString(dealTicket), dealSymbol, orderType, profit, TimeToString(openTime, TIME_DATE|TIME_MINUTES), TimeToString(closeTime, TIME_DATE|TIME_MINUTES), durationMin, requestedPrice, entryPrice, slippagePts, spreadPts, brokerHour, brokerMinute, profitPts, maxDrawdownPts, pipsFromPDH
+      "{\"accountId\":\"%s\", \"type\":\"trade_closed\", \"ticket\":\"%s\", \"pair\":\"%s\", \"orderType\":\"%s\", \"profit\":%.2f, \"openTime\":\"%s\", \"closeTime\":\"%s\", \"durationMin\":%.2f, \"requestedPrice\":%.5f, \"openPrice\":%.5f, \"slippagePts\":%.1f, \"spreadPts\":%.1f, \"brokerHour\":%d, \"brokerMinute\":%d, \"profitPts\":%.1f, \"maxDrawdownPts\":%.1f, \"pipsFromPDH\":%.1f}",
+      accountId, IntegerToString(dealTicket), dealSymbol, orderType, profit, TimeToString(openTime, TIME_DATE|TIME_MINUTES), TimeToString(closeTime, TIME_DATE|TIME_MINUTES), durationMin, requestedPrice, entryPrice, slippagePts, spreadPts, brokerHour, brokerMinute, profitPts, maxDrawdownPts, pipsFromPDH
    );
 
    char post[], result[];
@@ -201,9 +203,11 @@ void PushAccountStats()
    double equity = AccountInfoDouble(ACCOUNT_EQUITY);
    double profit = AccountInfoDouble(ACCOUNT_PROFIT);
    
+   string accountId = IntegerToString(AccountInfoInteger(ACCOUNT_LOGIN));
+   
    string json = StringFormat(
-      "{\"type\":\"account_update\", \"balance\":%.2f, \"equity\":%.2f, \"profit\":%.2f, \"winRate\":85.0, \"drawdown\":1.5, \"equityCurve\":[{\"date\":\"Today\", \"value\":%.2f}]}",
-      balance, equity, profit, equity
+      "{\"accountId\":\"%s\", \"type\":\"account_update\", \"balance\":%.2f, \"equity\":%.2f, \"profit\":%.2f, \"winRate\":85.0, \"drawdown\":1.5, \"equityCurve\":[{\"date\":\"Today\", \"value\":%.2f}]}",
+      accountId, balance, equity, profit, equity
    );
 
    char post[], result[];

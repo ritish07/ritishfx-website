@@ -5,13 +5,15 @@ import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContai
 import { RefreshCw, TrendingUp, DollarSign, Activity, Percent } from "lucide-react";
 
 export default function EAForwardTestDashboard() {
-  const [data, setData] = useState<{ stats: any, trades: any[] } | null>(null);
+  const [data, setData] = useState<{ stats: any, trades: any[], availableAccounts?: string[], selectedAccount?: string } | null>(null);
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
+  const [activeAccount, setActiveAccount] = useState<string | null>(null);
 
-  const fetchData = async () => {
+  const fetchData = async (accountId?: string | null) => {
     try {
-      const res = await fetch("/api/mt5/data");
+      const url = accountId ? `/api/mt5/data?accountId=${accountId}` : "/api/mt5/data";
+      const res = await fetch(url);
       const result = await res.json();
       
       // Parse the JSON string for equity curve
@@ -24,6 +26,9 @@ export default function EAForwardTestDashboard() {
       }
       
       setData(result);
+      if (result.selectedAccount && !activeAccount) {
+        setActiveAccount(result.selectedAccount);
+      }
     } catch (err) {
       console.error("Failed to fetch MT5 data");
     } finally {
@@ -38,7 +43,7 @@ export default function EAForwardTestDashboard() {
 
   const handleRefresh = () => {
     setRefreshing(true);
-    fetchData();
+    fetchData(activeAccount);
   };
 
   if (loading) {
@@ -84,14 +89,31 @@ export default function EAForwardTestDashboard() {
           </h2>
           <p className="text-sm text-zinc-500 mt-1">Real MT5 Demo Account Data</p>
         </div>
-        <button 
-          onClick={handleRefresh} 
-          disabled={refreshing}
-          className="flex items-center text-sm font-medium text-zinc-600 bg-zinc-50 hover:bg-zinc-100 px-4 py-2 rounded-xl transition-colors border border-zinc-200"
-        >
-          <RefreshCw className={`w-4 h-4 mr-2 ${refreshing ? "animate-spin" : ""}`} />
-          Refresh Data
-        </button>
+        <div className="flex items-center gap-3">
+          {data?.availableAccounts && data.availableAccounts.length > 0 && (
+            <select
+              value={activeAccount || data.selectedAccount || ""}
+              onChange={(e) => {
+                setActiveAccount(e.target.value);
+                setRefreshing(true);
+                fetchData(e.target.value);
+              }}
+              className="text-sm font-medium text-zinc-700 bg-white border border-zinc-200 rounded-xl px-3 py-2 outline-none focus:ring-2 focus:ring-green-500/20"
+            >
+              {data.availableAccounts.map(acc => (
+                <option key={acc} value={acc}>Account: {acc}</option>
+              ))}
+            </select>
+          )}
+          <button 
+            onClick={handleRefresh} 
+            disabled={refreshing}
+            className="flex items-center text-sm font-medium text-zinc-600 bg-zinc-50 hover:bg-zinc-100 px-4 py-2 rounded-xl transition-colors border border-zinc-200"
+          >
+            <RefreshCw className={`w-4 h-4 mr-2 ${refreshing ? "animate-spin" : ""}`} />
+            Refresh Data
+          </button>
+        </div>
       </div>
 
       <div className="p-6">

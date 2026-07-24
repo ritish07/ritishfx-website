@@ -96,6 +96,7 @@ model MT5ForwardTest {
 
 model MT5Trade {
   id          String   @id // Ticket number from MT5
+  accountId   String   @default("live_account")
   pair        String
   type        String   // BUY or SELL
   profit      Float

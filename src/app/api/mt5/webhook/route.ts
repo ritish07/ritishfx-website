@@ -13,10 +13,12 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
+    const accountId = data.accountId ? String(data.accountId) : "live_account";
+
     // Update overall account stats
     if (data.type === "account_update") {
       await prisma.mT5ForwardTest.upsert({
-        where: { id: "live_account" },
+        where: { id: accountId },
         update: {
           balance: data.balance,
           equity: data.equity,
@@ -26,7 +28,7 @@ export async function POST(req: Request) {
           equityCurve: JSON.stringify(data.equityCurve) // Expecting array of { date, value }
         },
         create: {
-          id: "live_account",
+          id: accountId,
           balance: data.balance,
           equity: data.equity,
           profit: data.profit,
@@ -43,6 +45,7 @@ export async function POST(req: Request) {
       await prisma.mT5Trade.upsert({
         where: { id: String(data.ticket) },
         update: {
+          accountId: accountId,
           profit: data.profit,
           closeTime: new Date(data.closeTime.replace(/\./g, "-")),
           maxDrawdownPts: data.maxDrawdownPts,
@@ -50,6 +53,7 @@ export async function POST(req: Request) {
         },
         create: {
           id: String(data.ticket),
+          accountId: accountId,
           pair: data.pair,
           type: data.orderType,
           profit: data.profit,
