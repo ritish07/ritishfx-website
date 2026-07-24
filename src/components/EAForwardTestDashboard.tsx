@@ -178,37 +178,36 @@ export default function EAForwardTestDashboard() {
                 <tr>
                   <th className="px-4 py-3 rounded-l-xl">Pair</th>
                   <th className="px-4 py-3">Type</th>
-                  <th className="px-4 py-3 text-right">Duration (Min)</th>
-                  <th className="px-4 py-3 text-right">Slippage (Pts)</th>
-                  <th className="px-4 py-3 text-right">Spread (Pts)</th>
-                  <th className="px-4 py-3 text-right">Profit (Pts)</th>
-                  <th className="px-4 py-3 text-right">Profit ($)</th>
-                  <th className="px-4 py-3 text-right rounded-r-xl">Date</th>
+                  <th className="px-4 py-3 text-right">Duration</th>
+                  <th className="px-4 py-3 text-right rounded-r-xl">Profit ($)</th>
                 </tr>
               </thead>
               <tbody>
-                {trades.map((trade: any) => (
-                  <tr key={trade.id} className="border-b border-zinc-100 last:border-0 hover:bg-zinc-50/50 transition-colors">
-                    <td className="px-4 py-3 font-medium text-zinc-900">{trade.pair}</td>
-                    <td className="px-4 py-3">
-                      <span className={`px-2.5 py-1 text-xs font-bold rounded-md ${trade.type === 'BUY' ? 'bg-blue-100 text-blue-700' : 'bg-orange-100 text-orange-700'}`}>
-                        {trade.type}
-                      </span>
-                    </td>
-                    <td className="px-4 py-3 text-right text-zinc-500">{trade.durationMin ? trade.durationMin.toFixed(2) : '-'}</td>
-                    <td className="px-4 py-3 text-right text-zinc-500">{trade.slippagePts !== null ? trade.slippagePts : '-'}</td>
-                    <td className="px-4 py-3 text-right text-zinc-500">{trade.spreadPts !== null ? trade.spreadPts : '-'}</td>
-                    <td className={`px-4 py-3 text-right font-medium ${trade.profitPts >= 0 ? "text-green-600" : "text-red-600"}`}>
-                      {trade.profitPts ? (trade.profitPts >= 0 ? `+${trade.profitPts}` : trade.profitPts) : '-'}
-                    </td>
-                    <td className={`px-4 py-3 text-right font-bold ${trade.profit >= 0 ? "text-green-600" : "text-red-600"}`}>
-                      {trade.profit >= 0 ? "+" : ""}{formatCurrency(trade.profit)}
-                    </td>
-                    <td className="px-4 py-3 text-right text-zinc-500">
-                      {new Date(trade.closeTime).toLocaleDateString()}
-                    </td>
-                  </tr>
-                ))}
+                {trades.map((trade: any) => {
+                  // Format duration as MM:SS
+                  let durationStr = '-';
+                  if (trade.durationMin !== null && trade.durationMin !== undefined) {
+                    const totalSeconds = Math.round(trade.durationMin * 60);
+                    const minutes = Math.floor(totalSeconds / 60);
+                    const seconds = totalSeconds % 60;
+                    durationStr = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+                  }
+
+                  return (
+                    <tr key={trade.id} className="border-b border-zinc-100 last:border-0 hover:bg-zinc-50/50 transition-colors">
+                      <td className="px-4 py-3 font-medium text-zinc-900">{trade.pair}</td>
+                      <td className="px-4 py-3">
+                        <span className={`px-2.5 py-1 text-xs font-bold rounded-md ${trade.type === 'BUY' ? 'bg-blue-100 text-blue-700' : 'bg-orange-100 text-orange-700'}`}>
+                          {trade.type}
+                        </span>
+                      </td>
+                      <td className="px-4 py-3 text-right text-zinc-500 font-mono">{durationStr}</td>
+                      <td className={`px-4 py-3 text-right font-bold ${trade.profit >= 0 ? "text-green-600" : "text-red-600"}`}>
+                        {trade.profit >= 0 ? "+" : ""}{formatCurrency(trade.profit)}
+                      </td>
+                    </tr>
+                  );
+                })}
               </tbody>
             </table>
           </div>
